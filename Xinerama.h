@@ -1,5 +1,4 @@
-/* $XdotOrg: xc/include/extensions/Xinerama.h,v 1.1.4.2.4.1 2004/03/04 17:46:24 eich Exp $ */
-/* $XFree86: xc/include/extensions/Xinerama.h,v 3.3 2002/09/16 18:05:19 eich Exp $ */
+/* $XdotOrg: xc/include/extensions/Xinerama.h,v 1.2 2004/04/23 18:43:06 eich Exp $ */
 /*
 
 Copyright 2003  The Open Group
@@ -27,13 +26,9 @@ in this Software without prior written authorization from The Open Group.
 */
 /* $XFree86: xc/include/extensions/Xinerama.h,v 3.3 2002/09/16 18:05:19 eich Exp $ */
 
- 
-#ifndef _XINERAMA_H
-#define _XINERAMA_H
- 
-#include <X11/Xfuncproto.h>
+#ifndef _Xinerama_h
+#define _Xinerama_h
 
-#ifndef XNOXINERAMABC
 typedef struct {
    int   screen_number;
    short x_org;
@@ -41,61 +36,39 @@ typedef struct {
    short width;
    short height;
 } XineramaScreenInfo;
-#endif
- 
+
 _XFUNCPROTOBEGIN
- 
+
 Bool XineramaQueryExtension (
-    Display *dpy,
-    int *event_basep,
-    int *error_basep
-);
- 
-Status XineramaQueryVersion(
-    Display *dpy,
-    int *major_version,
-    int *minor_version
-);
- 
-Bool XineramaActive (
-    Display *dpy,
-    Window window
+   Display *dpy,
+   int     *event_base,
+   int     *error_base
 );
 
-#ifndef XNOXINERAMABC
-Bool XineramaIsActive (
-    Display *dpy
+Status XineramaQueryVersion(
+   Display *dpy,
+   int     *major_versionp,
+   int     *minor_versionp
 );
-#endif
- 
-Status XineramaGetData(
-    Display *dpy,
-    Window window,
-    XRectangle **framebuffer_rects,
-    int *number_framebuffers
+
+Bool XineramaIsActive(Display *dpy);
+
+
+/* 
+   Returns the number of heads and a pointer to an array of
+   structures describing the position and size of the individual
+   heads.  Returns NULL and number = 0 if Xinerama is not active.
+  
+   Returned array should be freed with XFree().
+*/
+
+XineramaScreenInfo * 
+XineramaQueryScreens(
+   Display *dpy,
+   int     *number
 );
- 
-#ifndef XNOXINERAMABC
-XineramaScreenInfo *XineramaQueryScreens (
-    Display *dpy,
-    int *number
-);
-#endif
- 
-Status XineramaGetCenterHint (
-    Display *dpy,
-    Window root,
-    int *x,
-    int *y
-);
- 
-Status XineramaSetCenterHint (
-    Display *dpy,
-    Window root,
-    int x,
-    int y
-);
- 
+
 _XFUNCPROTOEND
- 
-#endif /* _XINERAMA_H */
+
+#endif /* _Xinerama_h */
+
