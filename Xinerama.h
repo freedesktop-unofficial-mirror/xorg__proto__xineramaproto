@@ -1,4 +1,5 @@
 /* $XdotOrg: xc/include/extensions/Xinerama.h,v 1.1.4.1 2003/12/18 22:59:34 kaleb Exp $ */
+/* $XFree86: xc/include/extensions/Xinerama.h,v 3.3 2002/09/16 18:05:19 eich Exp $ */
 /*
 
 Copyright 2003  The Open Group
