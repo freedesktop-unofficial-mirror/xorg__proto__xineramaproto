@@ -31,16 +31,6 @@ in this Software without prior written authorization from The Open Group.
 #define _XINERAMA_H
  
 #include <X11/Xfuncproto.h>
-
-#ifndef XNOXINERAMABC
-typedef struct {
-   int   screen_number;
-   short x_org;
-   short y_org;
-   short width;
-   short height;
-} XineramaScreenInfo;
-#endif
  
 _XFUNCPROTOBEGIN
  
@@ -60,12 +50,6 @@ Bool XineramaActive (
     Display *dpy,
     Window window
 );
-
-#ifndef XNOXINERAMABC
-Bool XineramaIsActive (
-    Display *dpy
-);
-#endif
  
 Status XineramaGetData(
     Display *dpy,
@@ -73,13 +57,6 @@ Status XineramaGetData(
     XRectangle **framebuffer_rects,
     int *number_framebuffers
 );
- 
-#ifndef XNOXINERAMABC
-XineramaScreenInfo *XineramaQueryScreens (
-    Display *dpy,
-    int *number
-);
-#endif
  
 Status XineramaGetCenterHint (
     Display *dpy,
